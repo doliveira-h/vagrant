@@ -1,0 +1,13 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/bionic64"
+    config.vm.provider "virtualbox" do |v|
+        v.memory = 512
+    end
+    config.vm.define "mysql" do |mysql|
+        mysql.vm.network "private_network", ip: "192.168.33.15"
+        mysql.vm.provision "shell", inline: "apt-get update && \
+        apt-get -y install mysql-server && systemctl enable mysql && \
+        sed -i 's/bind-address.*$/bind-address = 0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf && \
+        systemctl restart mysql && mysql -e \"create user 'phpuser'@'%' identified by 'password';\""
+    end
+end
