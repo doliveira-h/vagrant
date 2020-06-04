@@ -1,7 +1,6 @@
 #!/bin/bash
-WP_DBNAME="wordpress"
-WP_USER="wordpress"
-WP_PASSWORD="wdpress#12"
+#load enviroment vars
+source ./env-vars.sh
 
 apt-get update
 #install mysql-server
