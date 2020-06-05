@@ -1,8 +1,10 @@
 #!/bin/bash
 # load environment variables
-source ./env-vars.sh
+source /vagrant/env-vars.sh
 
+# update repositories
 apt-get update
+
 # install mysql-server
 apt-get -y install mysql-server 
 
@@ -13,7 +15,6 @@ sed -i 's/bind-address.*$/bind-address = 0.0.0.0/g' /etc/mysql/mysql.conf.d/mysq
 systemctl enable mysql && systemctl restart mysql
 
 # create database and user
-mysql -e "create database $WP_DBNAME;"
-mysql -e "create user '$WP_USER'@'%' identified by '$WP_PASSWORD';"
-mysql -e "flush privileges;"
-mysql -e "grant all privileges on $WP_DBNAME.* to '$WP_USER'@'%';"
+mysql -e "CREATE DATABASE $WP_DBNAME;"
+mysql -e "GRANT ALL PRIVILEGES ON $WP_DBNAME.* TO '$WP_USER'@'%' IDENTIFIED BY '$WP_PASSWORD';"
+mysql -e "FLUSH PRIVILEGES;"
