@@ -1,7 +1,8 @@
 #!/bin/bash
-
+echo "Importing Elasticsearch GPG-KEY"
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
+echo "Creating Repository Configuration"
 cat <<EOF > /etc/yum.repos.d/elasticsearch.repo
 [elasticsearch]
 name=Elasticsearch repository for 7.x packages

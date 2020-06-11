@@ -1,11 +1,11 @@
 #!/bin/bash
-# load environment variables
-source /vagrant/env-vars.sh
-
+echo "Installing Journalbeat package"
 yum install  --enablerepo=elasticsearch -y journalbeat
 
+echo "Move Journalbeat configuration file"
 mv /etc/journalbeat/journalbeat.yml /etc/journalbeat/journalbeat-bkp.yml
 
+echo "Creating Journalbeat configuration file"
 cat <<EOF > /etc/journalbeat/journalbeat.yml
 journalbeat.inputs:
 - paths: []
@@ -26,8 +26,13 @@ processors:
   - add_docker_metadata: ~
 EOF
 
+echo "Reload systemctl"
 systemctl daemon-reload
+
+echo "Enable Journalbeat Service"
 systemctl enable journalbeat
+
+echo "Restarting Journalbeat Service"
 systemctl restart journalbeat
 
 while [[ "$(curl -s -XGET -o /dev/null -L -w ''%{http_code}'' http://192.168.33.15:5601/status)" != "200" ]]; do

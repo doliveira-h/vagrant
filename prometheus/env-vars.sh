@@ -1,5 +1,4 @@
 #!/bin/bash
-# mysql database name for wordpress
 PROMETHEUS_VERSION="2.18.1"
 PROMETHEUS_PKG="prometheus-${PROMETHEUS_VERSION}.linux-amd64"
 NODE_EXPORT_VERSION="1.0.0"
