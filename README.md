@@ -2,7 +2,7 @@
 
 This project is a collection of Vagrant files used for tests/lab purposes
 
-### Tech - A1
+### Tech
 
 Vagrantfile description:
 
@@ -12,7 +12,7 @@ Vagrantfile description:
 * [prometheus] - Deploy 2 Ubuntu VMs and install Prometheus/NodeExport and Grafana host
 * [wordpress] - Deploy 2 Ubuntu VM and install Apache/PHP/Wordpress and MySQL host 
 
-### Installation - A2
+### Installation
 
 Prerequisites:
 
